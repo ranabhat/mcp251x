@@ -54,10 +54,32 @@
  *
  */
 
+#ifndef _CAN_PLATFORM_MCP251X_H
+#define _CAN_PLATFORM_MCP251X_H
+
+/*
+ *
+ * CAN bus driver for Microchip 251x CAN Controller with SPI Interface
+ *
+ */
+
+#include <linux/spi/spi.h>
+
+/*
+ * struct mcp251x_platform_data - MCP251X SPI CAN controller platform data
+ * @oscillator_frequency:       - oscillator frequency in Hz
+ */
+
+struct mcp251x_platform_data {
+	unsigned long oscillator_frequency;
+};
+
+#endif /* !_CAN_PLATFORM_MCP251X_H */
+
 #include <linux/can/core.h>
 #include <linux/can/dev.h>
 #include <linux/can/led.h>
-#include <linux/can/platform/mcp251x.h>
+/*#include <linux/can/platform/mcp251x.h>*/
 #include <linux/clk.h>
 #include <linux/completion.h>
 #include <linux/delay.h>
@@ -250,6 +272,10 @@ const u8 RXFEID0[6] = {
 #define MCP251X_OST_DELAY_MS	(5)
 
 #define DEVICE_NAME "mcp251x"
+
+static struct mcp251x_platform_data mcp251x_info = {
+        .oscillator_frequency = 16000000,
+};
 
 static int mcp251x_enable_dma; /* Enable SPI DMA. Default: 0 (Off) */
 module_param(mcp251x_enable_dma, int, 0444);
