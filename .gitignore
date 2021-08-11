@@ -1,0 +1,7 @@
+.mcp251x.*
+.mcp251x.*.*
+.mcp251x.*.*.*
+.Module.*.*
+.modules.*.*
+.Module.*
+.modules.*
